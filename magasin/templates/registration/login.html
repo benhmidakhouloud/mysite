@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 36px;
+        font-weight: bold;
+        margin-top: 40px;
+        margin-bottom: 30px;
+        color: #333;
+    }
+
+    .tous {
+        border: 2px solid #ccc;
+        width: 400px;
+        max-width: 100%;
+        padding: 20px;
+        margin: 0 auto;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+        padding: 10px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 18px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .inscrit {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .inscrit a {
+        color: #007bff;
+        text-decoration: none;
+        margin-left: 5px;
+    }
+
+    .inscrit a:hover {
+        text-decoration: underline;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    table tr {
+        margin-bottom: 10px;
+    }
+
+    table td {
+        padding: 5px 0;
+    }
+
+    .alert {
+        margin-bottom: 10px;
+    }
+
+    .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        padding: 8px;
+        border-radius: 4px;
+    }
+</style>
+<body>
+{% block content %}
+    <h1>Se connecter</h1>
+    <div class="tous">
+        <div>
+            <form method="post">
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <p class="alert alert-danger">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+                <table>
+                    {% for field in form %}
+                        <tr>
+                            <td>{{ field.label_tag }}</td>
+                            <td>{{ field }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <button type="submit">Se connecter</button>
+            </form>
+        </div>
+        <div class="inscrit">
+            <small>
+                Pas encore inscrit.e?
+                <a href="{% url 'register' %}"> S'inscrire </a>
+                <br>
+                Mot de passe oublié ?
+                <a href="{% url 'password_reset' %}">
+                    Renouveler mon mot de passe
+                </a>
+            </small>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html">
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Création d'un design étape par étape - Etape n°1 : Le code XHTML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        #conteneur {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        #menu {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        #menu li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        #menu li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        #contenu {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        #footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="conteneur">
+        <h1 id="header"><a href="#" title="Colored Design - Accueil"><span>Colored Design</span></a></h1>
+        
+        <nav>
+            <ul id="menu">
+                <li><a href="/magasin">Application n°1 : Magasin</a></li>
+                <li><a href="/blog">Application n°2: Blog</a></li>
+                <li><a href="#">Application n°3</a></li>
+            </ul>
+        </nav>
+
+        <div id="contenu">
+            <h2>My site</h2>
+            <p>Welcome to my site</p>
+        </div>
+
+        <p id="footer">Base de Page de Votre Site Web Django</p>
+    </div>
+
+</body>
+</html>

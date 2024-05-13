@@ -1,0 +1,26 @@
+{% extends 'magasin/base.html' %}
+
+{% block title %}
+    Manipulation des Commandes
+{% endblock %}
+
+{% block content %}  
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h2 class="text-center">Manipulation des Commandes</h2>
+                <form method="POST" class="post-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </form>
+                <div class="row mt-4">
+                    <div class="col-lg-6">
+                        <h6>Total Commande: <strong>{{ cd.totalCde }}</strong></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'magasin/listeCommande.html' %}
+{% endblock %}
