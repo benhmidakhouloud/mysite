@@ -1,85 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Liste des Posts</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+     <meta charset="UTF-8">
+     <title>Liste des Posts</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <style>
-    .card-wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        /* justify-content: space-around; */
+     .card-wrapper {
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: space-around;
+     }
+     
+     .card {
+          margin-top: 200px;
+         margin-bottom: 10px;
+         width: 400px;
+         border: 2px solid rgb(138, 29, 69);
+         /* background-color: rgb(57, 53, 18); */
+     }
+    .nav-item{
+     display: flex;
+     margin: 15px;
+     margin-right: 14px;
+     gap: 14px;
     }
-
-    .card {
-        margin-top: 70px;
-        margin-bottom: 20px;
-        width: 400px;
-        border: 2px solid black;
-        /* box-shadow: 10px 5px 5px rgb(54, 51, 33); */
-        /* background-color: rgb(57, 53, 18); */
+    .card-title{
+     font-weight: bold;
+     font-size: 30px;
+     font-family: sans-serif;
     }
-
-    .nav-item {
-        display: flex;
-        margin: 15px;
-        margin-right: 10px;
-        gap: 10px;
+    .card-text{
+     font-size: 30px;
+     font-family: sans-serif;
     }
-
-    .card-title {
-        font-weight: bold;
-        font-size: 22px;
-        font-family: sans-serif;
+    .navbar-brand{
+     font-weight: bold;
+     font-size: 50px;
+     margin-left: 30px;
     }
-
-    .card-text {
-        font-size: 18px;
-        font-family: sans-serif;
-    }
-
-    .navbar-brand {
-        font-weight: bold;
-        font-size: 25px;
-        margin-left: 15px;
-    }
-</style>
-
+  </style>
 <body>
-    <nav class="navbar bg-body-tertiary">
-        <a class="navbar-brand" href="#">Bienvenue au Blog de notre Site</a>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a href="{% url 'creer_post' %}" class="btn btn-info ml-2">+ Poster</a>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-info" type="submit">Search</button>
-                </form>
-            </li>
-        </ul>
-    </nav>
-    <div class="card-wrapper">
+     <nav class="navbar" style="background-color: #e3f2fd;">
+          <a class="navbar-brand" href="#">Bienvenue au Blog de notre Site</a>
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                   <a href="{% url 'creer_post' %}" class="btn btn-info">+ Poster</a>
+                  <form class="d-flex" role="search">
+                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                      <button class="btn btn-outline-success" type="submit" style="background-color: #e3f2fd;">Search</button>
+                  </form>
+              </li>
+          </ul>
+      </nav>
+     <div class="card-wrapper">
         {% for post in posts %}
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{ post.title }}</h5>
-                <p class="card-text">{{ post.created_on }}</p>
-                <p class="card-text">{{ post.slug }}</p>
-                <img src="/media/{{post.image}}" width="180px" height="150px">
-                <p class="card-text">{{ post.author }}</p>
-                <a href="{% url 'detail_post' post.pk %}" class="btn btn-warning">Détails</a>
-                <a href="{% url 'modifier_post' post.pk %}" class="btn btn-secondary">Modifier</a>
-                <form action="{% url 'supprimer_post' post.pk %}" method="post" style="display: inline;">
-                    {% csrf_token %}
-                    <input type="submit" class="btn btn-danger" value="Supprimer">
-                </form>
-            </div>
-        </div>
+             <div class="card">
+                 <div class="card-body">
+                     <h5 class="card-title">{{ post.title }}</h5>
+                     <p class="card-text">{{ post.created_on }}</p>
+                     <img src="/media/{{post.image}}" width="180px" height="150px">
+                     <p class="card-text">{{ post.author }}</p>
+                     <a href="{% url 'detail_post' post.pk %}" class="btn btn-outline-danger">Détails</a>
+                     <a href="{% url 'modifier_post' post.pk %}" class="btn btn-outline-secondary">Modifier</a>
+<form action="{% url 'supprimer_post' post.pk %}" method="post" style="display: inline;">
+    {% csrf_token %}
+    <input type="submit" class="btn btn-outline-warning" value="Supprimer">
+</form>
+                 </div>
+             </div>
         {% endfor %}
-    </div>
+     </div>
 </body>
-
 </html>

@@ -34,6 +34,8 @@ router.register('produit', ProductViewset, basename='produit')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('magasin/', include('magasin.urls')),
+        path('jeux/', include('jeux.urls')),
+
     path('blog/', include('blog.urls')),
     # path('jeux/',include('jeux.urls')),
     path('', views.home,name='home'),
